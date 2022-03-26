@@ -1,4 +1,4 @@
-# Don't get nervous, stop forgetting things and save your time for something really important.
+# Don't get nervous, stop forgetting things and save your time for something really important
 
 ## What is it?
 It's a Vue 3 to-do application. It's pretty simple now, but I'm gonna expand this project.
