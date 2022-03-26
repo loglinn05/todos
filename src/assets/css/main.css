@@ -1,0 +1,70 @@
+@import './reset.css';
+@import '~mdb-ui-kit/css/mdb.min.css';
+@import './preloader.css';
+@import url('https://fonts.googleapis.com/css2?family=Hubballi&display=swap');
+
+body {
+    display: flex;
+    flex-direction: column;
+    background: mistyrose;
+}
+
+body * {
+    font-family: 'Hubballi', cursive;
+}
+
+h1 {
+    font-size: 4em;
+}
+
+h2 {
+    font-size: 2.75em;
+}
+
+p, a:not(.copyright a) {
+    margin: 0;
+    font-size: 1.5em !important;
+}
+
+button {
+    font-size: 1.25em !important;
+}
+
+@media screen and (max-width: 992px) {
+    h1 {
+        font-size: 3.75em;
+    }
+    h2 {
+        font-size: 2.5em;
+    }
+    p, a:not(.navbar-brand, .copyright a) {
+        font-size: 1.25em !important;
+    }
+}
+
+@media screen and (max-width: 465px) {
+    h1 {
+        font-size: 3.5em;
+    }
+    h2 {
+        font-size: 2.25em;
+    }
+}
+
+@media screen and (max-width: 417px) {
+    h1 {
+        font-size: 3.25em;
+    }
+    h2 {
+        font-size: 2em;
+    }
+}
+
+@media screen and (max-width: 375px) {
+    h1 {
+        font-size: 3em;
+    }
+    h2 {
+        font-size: 1.75em;
+    }
+}
