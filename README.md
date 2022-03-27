@@ -4,7 +4,7 @@
 It's a Vue 3 to-do application. It's pretty simple now, but I'm gonna expand this project.
 
 ## How to launch it on your machine?
-1. First, you should run the [api](https://github.com/loglinn05/todos-api). Following the link, you will find the instruction for doing so.
+1. First, you should run the [API](https://github.com/loglinn05/todos-api). Following the link, you will find the instruction for doing so.
 2. Clone the repo into any folder you want.
 3. Run `yarn install` to install the project dependencies.
 4. Open your command prompt and navigate to the project root.
