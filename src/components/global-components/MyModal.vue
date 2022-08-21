@@ -1,10 +1,10 @@
 <template>
-  <div class="modal fade" :id="id" tabindex="-1" :aria-labelledby="id + 'Label'" aria-hidden="true">
-    <div class="modal-dialog">
+  <div class="modal fade px-0" :id="id" tabindex="-1" :aria-labelledby="id + 'Label'" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
       <div class="modal-content">
         <div class="modal-header">
-          <h2 class="modal-title text-center" :id="id + 'Label'">{{ modalTitleText }}</h2>
-          <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
+          <h2 class="modal-title" :id="id + 'Label'">{{ modalTitleText }}</h2>
+          <button type="button" class="btn-close ms-4" data-mdb-dismiss="modal" aria-label="Close"></button>
         </div>
         <div class="modal-body">
           <slot name="modal-body"></slot>

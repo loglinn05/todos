@@ -1,21 +1,21 @@
 <template>
   <my-edit-form-modal
     :id="id"
-    :modalTitleText="'Edit To-Do'"
-    @edit="editTodo"
+    :modalTitleText="'Change To-Do List Name'"
+    @edit="changeTodoListName"
   >
     <my-input
       class="mx-3"
       label="Your To-Do"
       placeholder="Edit Your To-Do"
-      v-model.trim="todoText"
-      @keydown.enter="editTodo"
+      v-model.trim="todoListName"
+      @keydown.enter="changeTodoListName"
     />
   </my-edit-form-modal>
 </template>
 <script>
 export default {
-  name: 'todo-edit-form-modal',
+  name: 'todo-list-name-change-form-modal',
   props: {
     id: {
       type: String,
@@ -24,15 +24,15 @@ export default {
   },
   data() {
     return {
-      todoText: '',
+      todoListName: '',
       input: function () {
         return {};
       }
     }
   },
   methods: {
-    editTodo() {
-      this.$emit('editTodo', this.todoText);
+    changeTodoListName() {
+      this.$emit('changeTodoListName', this.todoListName);
     }
   },
   mounted() {
@@ -43,6 +43,6 @@ export default {
       }
     })
   },
-  emits: ['editTodo']
+  emits: ['changeTodoListName']
 }
 </script>

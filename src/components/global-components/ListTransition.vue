@@ -29,7 +29,7 @@ export default {
 .list-enter-from,
 .list-leave-to {
   opacity: 0;
-  transform: translateX(-100%);
+  transform: translateY(-20px);
 }
 
 .list-leave-active {

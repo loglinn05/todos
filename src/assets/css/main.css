@@ -26,8 +26,12 @@ p, a:not(.copyright a) {
     font-size: 1.5em !important;
 }
 
-button {
+button:not(.big-icon-button) {
     font-size: 1.25em !important;
+}
+
+.big-icon-button {
+    font-size: 2em;
 }
 
 @media screen and (max-width: 992px) {

@@ -1,10 +1,22 @@
 <template>
+  <div
+    v-if="todosState.activeTodoListId"
+    class="d-inline-flex justify-content-center px-1"
+  >
+    <button
+      class="big-icon-button text-secondary bg-transparent border-0 p-0"
+      title="Add to-do"
+      data-mdb-toggle="modal"
+      :data-mdb-target="'#' + todosState.todoAdditionFormModalId"
+      @click="modalInputFocus(todosState.todoAdditionFormModalId)"
+    ><i class="fas fa-plus"></i></button>
+  </div>
   <list-transition>
     <div
-      v-for="todo in todos"
+      v-for="todo in todosState.todos"
       :todo="todo"
       :key="todo.id"
-      :class="'to-do ' + [todo.done ? 'done' : '']"
+      :class="'list-item ' + [todo.done ? 'done' : '']"
       class="d-inline-flex justify-content-between p-2 my-1"
     >
       <div class="d-inline-flex flex-column text-break">
@@ -14,7 +26,7 @@
           {{ (new Date(todo.created_at)).toLocaleTimeString() }}
         </small></p>
       </div>
-      <div class="to-do-buttons d-inline-flex my-auto">
+      <div class="list-item-buttons d-inline-flex my-auto">
         <button
           class="text-danger"
           title="Remove to-do"
@@ -41,18 +53,21 @@
           class="text-secondary"
           title="Edit to-do"
           data-mdb-toggle="modal"
-          :data-mdb-target="todoEditButtonTarget"
+          :data-mdb-target="'#' + todosState.todoEditFormModalId"
           @click="onEditButtonClick(todo.id, todo.text)"
         ><i class="fas fa-pen-alt"></i></button>
       </div>
     </div>
     <div
-      class="no-to-dos p-5 d-inline-flex justify-content-center text-center"
-      v-if="(todos.length === 0)"
+      class="empty-list p-5 d-inline-flex justify-content-center text-center"
+      v-if="(todosState.todos.length === 0)"
     >
       <fade-transition mode="out-in">
-        <h2 v-if="!todosAreLoading">Your To-Do List Is Empty.</h2>
-        <div v-else class="todos-loading-spinner spinner-border text-secondary" role="status">
+        <template v-if="!todosState.todosAreLoading">
+          <h2 v-if="todosState.activeTodoListId">To-Do List Is Empty</h2>
+          <h2 v-else>Choose a to-do list</h2>
+        </template>
+        <div v-else class="list-loading-spinner spinner-border text-secondary" role="status">
           <span class="visually-hidden">Loading...</span>
         </div>
       </fade-transition>
@@ -61,47 +76,40 @@
 </template>
 
 <script>
+import modal from '@/modules/modal.js'
+
 export default {
   name: "todo-list",
-  props: {
-    todos: {
-      type: Array,
-      required: true
-    },
-    todosAreLoading: {
-      type: Boolean,
-      required: true
-    }
-  },
+  inject: ['todosState'],
   data () {
     return {
-      todoEditButtonTarget: '#todoEditFormModal',
+      todos: [],
       todoEditModalFormInput: function () {
         return {};
       }
     }
   },
   methods: {
-    type(input, text, i = 0) {
-      if (i < text.length) {
-        input.value += text.charAt(i);
-        i++;
-        setTimeout(this.type, 50, input, text, i);
-      }
-    },
     onEditButtonClick(todoId, todoText) {
       this.todoEditModalFormInput.value = '';
       setTimeout(() => {
         this.todoEditModalFormInput.focus();
         setTimeout(() => {
-          this.type(this.todoEditModalFormInput, todoText);
+          this.todoEditModalFormInput.value = todoText;
         }, 500);
       }, 750);
       this.$emit('setEditedTodoData', todoId, todoText);
     }
   },
   mounted() {
-    this.todoEditModalFormInput = document.querySelector(this.todoEditButtonTarget + ' input');
+    this.todoEditModalFormInput = document.querySelector('#' + this.todosState.todoEditFormModalId + ' input');
+  },
+  setup() {
+    const { modalInputFocus } = modal();
+
+    return {
+      modalInputFocus
+    };
   },
   emits: ['setRemovedTodoId', 'setEditedTodoData', 'markAsDone', 'markAsUndone']
 }
