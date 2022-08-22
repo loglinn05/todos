@@ -1,5 +1,5 @@
 <template>
-  <div class="container-fluid to-do-list px-lg-5 px-md-4 px-sm-5 px-3 py-5">
+  <div class="container-fluid px-lg-5 px-md-4 px-sm-5 px-3 py-5">
     <div class="row d-flex flex-row align-items-start">
       <todos-page
         v-if="!isPhone"
