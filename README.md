@@ -8,6 +8,7 @@ It's a Vue 3 to-do application. It's pretty simple now, but I'm gonna expand thi
 2. Clone the repo into any folder you want.
 3. Run `yarn install` to install the project dependencies.
 4. Open your command prompt and navigate to the project root.
+5. Create `.env.local` file and copy `.env.local.example` content to it.
 5. Run `yarn serve`.
 6. Enjoy!
 
